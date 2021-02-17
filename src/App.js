@@ -8,7 +8,7 @@ export default class App extends React.Component {
       error: null,
       isLoaded: false,
       quotes: [],
-      random: 10
+      random: null
     };
     this.handleClick = this.handleClick.bind(this);
   }
