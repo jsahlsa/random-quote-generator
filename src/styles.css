@@ -1,4 +1,37 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  background: blue;
+  display: grid;
+
+  justify-items: center;
+  height: 100vh;
+}
+
+.App > div {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  min-width: 60%;
+  max-width: 80%;
+  background: #fff;
+  height: 60vh;
+  margin-top: 30%;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+button {
+  width: 10rem;
+  border-radius: 10px;
+}
+
+p {
+  //background: red;
+  width: 100%;
+}
+
+.fa-twitter-square {
+  font-size: 100px;
+  color: Dodgerblue;
 }

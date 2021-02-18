@@ -50,9 +50,18 @@ export default class App extends React.Component {
         <div className="App">
           <div id="quote-box">
             <p id="text">{quotes[random].text}</p>
-            <p>{quotes[random].author}</p>
-            <button onClick={this.handleClick}>New quote</button>
-            <p>{random}</p>
+            <p id="author">
+              -{" "}
+              {quotes[random].author === null
+                ? "Anonymous"
+                : quotes[random].author}
+            </p>
+            <button id="new-quote" onClick={this.handleClick}>
+              New quote
+            </button>
+            <a id="tweet-quote" target="_blank" href="twitter.com/intent/tweet">
+              <i className="fab fa-twitter-square"></i>
+            </a>
           </div>
         </div>
       );
