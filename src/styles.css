@@ -10,6 +10,7 @@
   justify-items: center;
   align-items: center;
   height: 100vh;
+  transition: background-color 1s;
 }
 
 .App > div {
@@ -19,7 +20,6 @@
   min-width: 1em;
   background: #fff;
   box-shadow: 1px 1px 50px 1px hsl(0, 0%, 25%, 0.6);
-  margin-top: 10%;
   padding: 3rem;
   border-radius: 20px;
 }
@@ -37,18 +37,19 @@
   color: hsl(234, 100%, 25%);
   font-size: 40px;
   text-shadow: 2px 2px 2px gray;
-  transition: transform 0.5s, color 0.5s;
+  transition: transform 0.2s, color 1s;
 }
 
 .fa-twitter-square:hover {
   color: hsl(234, 100%, 20%);
-  transform: scale(1.05);
+  transform: translateY(2px);
 }
 
 .fa-quote-right {
   color: hsl(234, 100%, 25%);
   font-size: 30px;
   transform: rotate(0.52turn) translate(10px, 10px);
+  transition: color 1s;
 }
 
 button {
@@ -64,21 +65,23 @@ button {
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
-  transition: transform 0.5s, background-color 0.5s;
+  transition: transform 0.2s, background-color 1s;
 }
 
 button:hover {
   background: hsl(234, 100%, 20%);
-  transform: scale(1.05);
+  transform: translateY(2px);
 }
 
 .text {
   font-size: 1.5rem;
   color: hsl(234, 100%, 25%);
+  transition: color 1s;
 }
 
 .author {
   font-weight: 700;
   padding-left: 20px;
   color: hsl(234, 100%, 25%);
+  transition: color 1s;
 }

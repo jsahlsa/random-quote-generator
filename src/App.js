@@ -8,9 +8,15 @@ export default class App extends React.Component {
       error: null,
       isLoaded: false,
       quotes: [],
-      random: null
+      random: null,
+      color: "hsl(234, 100%, 25%)",
+      hoverColor: "hsl(234, 100%, 40%)",
+      hoverButton: false,
+      hoverTwitter: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.toggleHoverButton = this.toggleHoverButton.bind(this);
+    this.toggleHoverTwitter = this.toggleHoverTwitter.bind(this);
   }
 
   componentDidMount() {
@@ -36,14 +42,15 @@ export default class App extends React.Component {
   }
 
   handleClick() {
+    let randomColor1 = Math.floor(Math.random() * 360);
     this.setState({
       random: [
         ...this.state.random,
         Math.floor(Math.random() * this.state.quotes.length)
-      ]
+      ],
+      color: `hsl(${randomColor1}, 100%, 25%)`,
+      hoverColor: `hsl(${randomColor1}, 100%, 40%)`
     });
-
-    let randomColor1 = Math.floor(Math.random() * 360);
 
     document
       .getElementById("tweet-quote")
@@ -57,36 +64,48 @@ export default class App extends React.Component {
               this.state.quotes[this.state.random.length - 1].author
           )
       );
+  }
 
-    document.querySelector("#quote-box").style["background"] =
-      "hsl(100, 10%, 90%)";
-    document.querySelector(".color").style["background"] =
-      "hsl(" + randomColor1 + ", 100%, 25%)";
-    document.querySelector(".text").style["color"] =
-      "hsl(" + randomColor1 + ", 100%, 25%)";
-    document.querySelector(".author").style["color"] =
-      "hsl(" + randomColor1 + ", 100%, 25%)";
-    document.querySelector("button").style["background"] =
-      "hsl(" + randomColor1 + ", 100%, 25%)";
-    document.querySelector(".color").style["color"] =
-      "hsl(" + randomColor1 + ", 100%, 25%)";
-    document.querySelector(".fab").style["color"] =
-      "hsl(" + randomColor1 + ", 100%, 25%)";
-    document.querySelector(".fas").style["color"] =
-      "hsl(" + randomColor1 + ", 100%, 25%)";
-    document.querySelector(".color").style["transition"] = "color 1s";
-    document.querySelector(".text").style["transition"] = "color 1s";
-    document.querySelector(".author").style["transition"] = "color 1s";
-    document.querySelector(".fas").style["transition"] = "color 1s";
-    document.querySelector(".fas").style["transition"] = "color 1s";
-    document.querySelector(".fab").style["transition"] = "color 1s";
-    document.querySelector(".color").style["transition"] = "background 1s";
-    document.querySelector("button").style["transition"] = "background 1s";
-    document.querySelector("#quote-box").style["transition"] = "background 1s";
+  toggleHoverButton() {
+    this.setState({
+      hoverButton: !this.state.hoverButton
+    });
+  }
+
+  toggleHoverTwitter() {
+    this.setState({
+      hoverTwitter: !this.state.hoverTwitter
+    });
   }
 
   render() {
-    const { error, isLoaded, quotes, random } = this.state;
+    const { error, isLoaded, quotes, random, color } = this.state;
+    let hoverStyleButton;
+    let hoverStyleTwitter;
+    if (this.state.hoverButton) {
+      hoverStyleButton = {
+        background: this.state.hoverColor,
+        transition: `background-color 1s, transform 0.2s`
+      };
+    } else {
+      hoverStyleButton = {
+        opacity: "1",
+        background: this.state.color,
+        transition: `background-color 1s, transform 0.2s`
+      };
+    }
+
+    if (this.state.hoverTwitter) {
+      hoverStyleTwitter = {
+        color: this.state.hoverColor,
+        transition: `color 1s, transform 0.2s`
+      };
+    } else {
+      hoverStyleTwitter = {
+        color: this.state.color,
+        transition: `color 1s, transform 0.2s`
+      };
+    }
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -94,14 +113,17 @@ export default class App extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="App color">
+        <div className="App" style={{ background: color }}>
           <div id="quote-box">
             <div className="quote-wrapper">
-              <p id="text" className="text">
-                <i class="fas fa-quote-right color"></i>{" "}
+              <p id="text" className="text" style={{ color: color }}>
+                <i
+                  class="fas fa-quote-right color"
+                  style={{ color: color }}
+                ></i>{" "}
                 {quotes[random.length - 2].text}
               </p>
-              <p id="author" className="author">
+              <p id="author" className="author" style={{ color: color }}>
                 -{" "}
                 {quotes[random.length - 2].author === null
                   ? "Anonymous"
@@ -114,9 +136,20 @@ export default class App extends React.Component {
                 target="_blank"
                 href="twitter.com/intent/tweet"
               >
-                <i className="fab fa-twitter-square"></i>
+                <i
+                  className="fab fa-twitter-square"
+                  style={hoverStyleTwitter}
+                  onMouseEnter={this.toggleHoverTwitter}
+                  onMouseLeave={this.toggleHoverTwitter}
+                ></i>
               </a>
-              <button id="new-quote" onClick={this.handleClick}>
+              <button
+                id="new-quote"
+                style={hoverStyleButton}
+                onMouseEnter={this.toggleHoverButton}
+                onMouseLeave={this.toggleHoverButton}
+                onClick={this.handleClick}
+              >
                 New quote
               </button>
             </div>
