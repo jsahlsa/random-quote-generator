@@ -1,37 +1,84 @@
+* {
+  //border: 1px red dashed;
+}
+
 .App {
   font-family: sans-serif;
-  text-align: center;
-  background: blue;
+  background: hsl(234, 100%, 25%);
   display: grid;
-
+  font-family: "Roboto Slab";
   justify-items: center;
+  align-items: center;
   height: 100vh;
 }
 
 .App > div {
   display: grid;
-  justify-content: center;
-  justify-items: center;
-  min-width: 60%;
-  max-width: 80%;
+  place-content: center space-between;
+  max-width: 60%;
+  min-width: 1em;
   background: #fff;
-  height: 60vh;
-  margin-top: 30%;
-  padding: 1rem;
+  box-shadow: 1px 1px 50px 1px hsl(0, 0%, 25%, 0.6);
+  margin-top: 10%;
+  padding: 3rem;
   border-radius: 20px;
 }
 
-button {
-  width: 10rem;
-  border-radius: 10px;
-}
-
-p {
-  //background: red;
+.bottom-wrapper {
+  display: grid;
+  grid-gap: 10px;
+  place-content: space-around;
+  grid-template-columns: 1fr 200px;
+  margin-top: 50px;
   width: 100%;
 }
 
 .fa-twitter-square {
-  font-size: 100px;
-  color: Dodgerblue;
+  color: hsl(234, 100%, 25%);
+  font-size: 40px;
+  text-shadow: 2px 2px 2px gray;
+  transition: transform 0.5s, color 0.5s;
+}
+
+.fa-twitter-square:hover {
+  color: hsl(234, 100%, 20%);
+  transform: scale(1.05);
+}
+
+.fa-quote-right {
+  color: hsl(234, 100%, 25%);
+  font-size: 30px;
+  transform: rotate(0.52turn) translate(10px, 10px);
+}
+
+button {
+  width: 90%;
+  background: hsl(234, 100%, 25%);
+  color: #fff;
+  font-size: 1em;
+  border: none;
+  font-family: "Open Sans";
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px gray;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.5s, background-color 0.5s;
+}
+
+button:hover {
+  background: hsl(234, 100%, 20%);
+  transform: scale(1.05);
+}
+
+.text {
+  font-size: 1.5rem;
+  color: hsl(234, 100%, 25%);
+}
+
+.author {
+  font-weight: 700;
+  padding-left: 20px;
+  color: hsl(234, 100%, 25%);
 }
